@@ -1,0 +1,248 @@
+body {
+  width: 100vw;
+  height: 100vh;
+
+  .App {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    .showModal {
+      display: flex;
+      position: absolute;
+      z-index: 700;
+      width: 100%;
+      top: 0px;
+      justify-content: center;
+      // align-items: center;
+
+      .modalBackdrop {
+        display: flex;
+        position: absolute;
+        z-index: 900;
+        width: 100%;
+        height: 100vh;
+        top: 0px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(169, 169, 169, 0.85);
+
+        .modalContainer {
+          display: flex;
+          position: fixed;
+          flex-direction: column;
+          // justify-content: space-evenly;
+          align-items: center;
+          background-color: darkred;
+          border-radius: 25px;
+
+          .modalTitle {
+            display: flex;
+            position: relative;
+            font-size: 40px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: white;
+            margin: 25px;
+          }
+
+          .modalBtnsContainer {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+
+            .btnDescription {
+              display: flex;
+              font-size: 25px;
+              letter-spacing: 1px;
+              color: white;
+            }
+
+            .quoteBtn {
+              display: flex;
+              position: relative;
+              border-radius: 7.5px;
+              border-style: outset;
+              font-size: 25px;
+              letter-spacing: 1px;
+              font-weight: bold;
+              letter-spacing: 1px;
+              cursor: pointer;
+              outline: none;
+            }
+
+            .quoteBtn:active {
+              border-style: inset;
+            }
+
+            .btnContainer {
+              display: flex;
+              position: relative;
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+
+          .ratingModalBtnsContainer {
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+
+            .ratingModalBtn {
+              display: flex;
+              position: relative;
+              width: 100px;
+              height: auto;
+              margin: 0px 25px;
+              background-color: white;
+              border-radius: 15px;
+              opacity: 0.15;
+              cursor: pointer;
+            }
+
+            .ratingModalBtn:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .hideModal {
+      display: none;
+    }
+
+    .mainContents {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+
+      .quoteBtnContainer {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .quoteBtnPic {
+          display: flex;
+          position: relative;
+          width: 600px;
+          height: 600px;
+          border-radius: 50px;
+          cursor: pointer;
+          outline: none;
+        }
+
+        .quoteBtnPic:hover {
+          transform: scale(1.025);
+        }
+
+        .quoteBtnTitle {
+          display: flex;
+          position: relative;
+          font-size: 40px;
+          font-weight: bold;
+          color: darkred;
+        }
+      }
+
+      .showQuoteContainer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .swansonQuote {
+          display: flex;
+          flex-direction: row;
+          position: relative;
+          font-size: 30px;
+          font-style: italic;
+          text-align: center;
+          margin: 25px;
+        }
+
+        .ratingContainer {
+          display: flex;
+          flex-direction: row;
+          position: relative;
+          justify-content: center;
+          align-items: center;
+
+          .ratingTitle {
+            display: flex;
+            position: relative;
+            font-size: 25px;
+            margin-right: 10px;
+          }
+
+          .silhouette {
+            display: flex;
+            position: relative;
+            width: 100px;
+            height: auto;
+            margin: 0px 10px;
+          }
+
+          .dot {
+            display: flex;
+            position: relative;
+            width: 20px;
+            height: auto;
+            margin: 0px 10px;
+          }
+
+          .ratingBtnContainer {
+            display: flex;
+            position: relative;
+
+            .showRatingBtn {
+              display: flex;
+
+              .ratingBtn {
+                display: flex;
+                position: relative;
+                border-radius: 7.5px;
+                border-style: outset;
+                font-size: 25px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                cursor: pointer;
+                outline: none;
+              }
+
+              .ratingBtn:active {
+                border-style: inset;
+              }
+            }
+
+            .hideRatingBtn {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .hideQuoteContainer {
+        display: none;
+      }
+    }
+  }
+}

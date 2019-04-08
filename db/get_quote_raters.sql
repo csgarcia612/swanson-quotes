@@ -1,0 +1,1 @@
+select * from quote_raters where quote_id = $1;
