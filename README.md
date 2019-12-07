@@ -1,68 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Quote Length Pop Up Graphic](https://i.imgur.com/AZEn5LH.png)]()
 
-## Available Scripts
+# Ron Swanson Quotes
+A randomized quote generation we application built as part of a coding challenge. 
 
-In the project directory, you can run:
+Users can rate all quotes based on a 5-star rating system and see the average rating of each quote when they appear on screen.
 
-### `npm start`
+Uses the “Ron Swanson Quotes API” - <a href="https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api">https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api</a>.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+---
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Table of Contents (Optional)
 
-### `npm run build`
+- [Installation](#installation)
+- [Usage](#usage)
+- [Documentation](#documentation)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- All the `code` required to get started
+- Images of what it should look like
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Clone
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> Clone this repo to your local machine using `https://github.com/csgarcia612/swanson-quotes.git`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```shell
+$ git clone https://github.com/csgarcia612/swanson-quotes.git
+```
 
-## Learn More
+### Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> Install npm packages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```shell
+$ npm install
+```
 
-### Code Splitting
+### Database
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+> Create a PostgreSQL database and use the file "<a href="https://github.com/csgarcia612/swanson-quotes/blob/master/db/init.sql">init.sql</a>" in the "db" folder within this repository to create the correct tables in the database.
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+---
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Usage
 
-### Advanced Configuration
+- Click on the image of the character "Ron Swanson" to activate the pop up to choose the length of the quote generated.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+[![Quote Length Pop Up Graphic](https://i.imgur.com/rQOIUE0.png)]()
 
-### Deployment
+- After selecting a quote length preference, a randomly selected quote will appear on screen.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- The average rating of the quote will appear below the quote as well. This is determined by the ratings all users give the quote when they have it generated for them. The rating is based on a 5-star system.
 
-### `npm run build` fails to minify
+- If there is an average rating for the quote, it will appear as a number of silhouettes of the character Ron Swanson.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[![Quote With Average Rating Graphic](https://i.imgur.com/c4amdpS.png)]()
+
+- If there is no average rating for the quote, there will only be black dots in place of the silhouettes.
+
+[![Quote Without Average Rating Graphic](https://i.imgur.com/T1ppZua.png)]()
+
+- The "Rate Quote" button will only appear for quotes the specific user has not rated yet.
+
+- Click on the "Rate Quote" button to activate the pop up to rate the quote between 1 and 5.
+
+[![Quote Without Average Rating Graphic](https://i.imgur.com/GffTCE0.png)]()
+
+
+## Documentation
+
+- The application does not have a traditional login function. Instead it uses the users IP address to save quote ratings into the database.
+
+- The application generates the average rating for each quote when it appears on screen. I accomplished this by using the following code.
+
+```javascript
+getQuoteAvgRating() {
+    const { currentQuote } = this.state;
+
+    if (
+      currentQuote.five_star +
+        currentQuote.four_star +
+        currentQuote.three_star +
+        currentQuote.two_star +
+        currentQuote.one_star !==
+      0
+    ) {
+      let averageRating = Math.round(
+        (5 * currentQuote.five_star +
+          4 * currentQuote.four_star +
+          3 * currentQuote.three_star +
+          2 * currentQuote.two_star +
+          1 * currentQuote.one_star) /
+          (currentQuote.five_star +
+            currentQuote.four_star +
+            currentQuote.three_star +
+            currentQuote.two_star +
+            currentQuote.one_star)
+      );
+
+      this.setState({
+        quoteAverageRating: averageRating
+      });
+    } else {
+      this.setState({
+        quoteAverageRating: 0
+      });
+    }
+  }
+```
